@@ -41,7 +41,7 @@ dsn <- function(x, xi=0, omega=1, alpha=0, tau=0, dp=NULL, log=FALSE)
   if(log) logPDF else exp(logPDF)
 }
 
-psn <- function(x, xi=0, omega=1, alpha=0, tau=0, dp=NULL, engine, ...)
+psn <- function(q, xi=0, omega=1, alpha=0, tau=0, dp=NULL, engine, lower.tail = TRUE, log.p = FALSE, ...)
 {
   if(!is.null(dp)) {
     if(!missing(alpha)) 
@@ -51,7 +51,7 @@ psn <- function(x, xi=0, omega=1, alpha=0, tau=0, dp=NULL, engine, ...)
     alpha <- dp[3]
     tau <- if(length(dp)>3) dp[4] else 0L
    }
-  z <- as.numeric((x-xi)/omega)
+  z <- as.numeric((q-xi)/omega)
   nz <- length(z)
   na <- length(alpha)
   if(missing(engine)) engine <- 
